@@ -1,0 +1,69 @@
+.celestia-viewer-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 80vh;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Loading overlay */
+.celestia-loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  background-color: rgba(10, 25, 41, 0.8);
+}
+
+/* Title overlay */
+.celestia-title-overlay {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+  padding: 10px 20px;
+  border-radius: 30px;
+  background-color: rgba(10, 25, 41, 0.7);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Fix for Cesium widgets to match our cosmic theme */
+.cesium-viewer-toolbar, 
+.cesium-viewer-animationContainer, 
+.cesium-viewer-timelineContainer,
+.cesium-viewer-bottom {
+  display: none !important;
+}
+
+.cesium-viewer {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.cesium-viewer-cesiumWidgetContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Add a subtle starry background */
+.celestia-viewer-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
+  z-index: 1;
+  pointer-events: none;
+} 

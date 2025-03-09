@@ -13,8 +13,10 @@ import { Box, Typography, CircularProgress } from '@mui/material';
 import 'cesium/Build/Cesium/Widgets/widgets.css';
 import './CelestiaViewer.css';
 
+// Use the environment variable for Cesium's base URL
+window.CESIUM_BASE_URL = process.env.REACT_APP_CESIUM_BASE_URL || '/cesium';
+
 // Replace with your own Cesium Ion access token if needed
-// You can create one for free at https://cesium.com/ion/
 Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlYWE1OWUxNy1mMWZiLTQzYjYtYTQ0OS1kMWFjYmFkNjc5YzciLCJpZCI6NTc3MzMsImlhdCI6MTYyMjY0NjQ5NH0.XcKpgANiY22ejJvPUsPHZ1LZ5c0-8RAxfWQ_F_I_p8s';
 
 interface CelestiaViewerProps {

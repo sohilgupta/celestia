@@ -1,31 +1,78 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
+# Dependencies
 /node_modules
 /.pnp
 .pnp.js
+.yarn/
+.npm/
 
-# testing
+# Testing
 /coverage
+*.lcov
 
-# production
+# Production
 /build
+/dist
+*.tgz
 
-# misc
-.DS_Store
+# Development
+.env
 .env.local
+.env.*.local
 .env.development.local
 .env.test.local
 .env.production.local
 
-# logs
+# Logs
+logs/
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+lerna-debug.log*
 
 # TypeScript
 *.tsbuildinfo
+.tsbuildinfo
+tsconfig.tsbuildinfo
 node_modules/.cache
 
+# React/Next.js specific
+.next/
+out/
+.cache/
+.parcel-cache/
+dist/
+
 # Cesium specific
-/public/cesium/ 
+/public/cesium/
+
+# Temporary files
+*.tmp
+*.temp
+.eslintcache
+.stylelintcache
+
+# Debug
+debug/
+.debug/
+
+# Editor and OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# dotenv environment variable files
+.env*
+!.env.example 
