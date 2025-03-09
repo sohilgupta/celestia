@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0a1929" />
+    <meta
+      name="description"
+      content="Celestia - Google Earth-Powered Virtual Travel Preview"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Celestia - Your Travel Universe Awaits</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #0a1929;
+        overflow: hidden;
+      }
+      
+      #root {
+        height: 100vh;
+        width: 100vw;
+      }
+      
+      /* Celestial loader animation */
+      .celestia-loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(ellipse at center, #0a1929 0%, #050d15 100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        flex-direction: column;
+      }
+      
+      .celestia-loader-orbit {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        border: 2px solid rgba(110, 140, 247, 0.2);
+        border-top: 2px solid #6e8cf7;
+        animation: spin 1.5s linear infinite;
+        position: relative;
+      }
+      
+      .celestia-loader-planet {
+        width: 20px;
+        height: 20px;
+        background: #f9a825;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 20px rgba(249, 168, 37, 0.5);
+      }
+      
+      .celestia-loader-text {
+        margin-top: 30px;
+        color: #6e8cf7;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.5rem;
+        font-weight: 500;
+        text-align: center;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    
+    <!-- Loader that shows before React loads -->
+    <div class="celestia-loader" id="celestia-loader">
+      <div class="celestia-loader-orbit">
+        <div class="celestia-loader-planet"></div>
+      </div>
+      <div class="celestia-loader-text">
+        Entering Celestia...
+      </div>
+    </div>
+    
+    <div id="root"></div>
+    
+    <script>
+      // Hide loader when app is loaded
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          document.getElementById('celestia-loader').style.opacity = '0';
+          document.getElementById('celestia-loader').style.transition = 'opacity 0.5s ease';
+          setTimeout(function() {
+            document.getElementById('celestia-loader').style.display = 'none';
+          }, 500);
+        }, 1000);
+      });
+    </script>
+  </body>
+</html> 

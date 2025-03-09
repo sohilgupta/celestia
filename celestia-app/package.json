@@ -1,0 +1,6 @@
+{
+  "devDependencies": {
+    "@craco/craco": "^7.1.0",
+    "copy-webpack-plugin": "^13.0.0"
+  }
+}
