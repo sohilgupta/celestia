@@ -1,140 +1,154 @@
-This spec outlines the idea, technical requirements, and implementation steps to create an immersive travel planning experience.
-
----
-
-# Specification: Google Earth-Powered Virtual Travel Preview
+# Specification: Celestia - Google Earth-Powered Virtual Travel Preview
 
 ## Overview
-The goal of this feature is to create an immersive, interactive virtual travel preview using Google Earth’s 3D mapping capabilities. Users will experience a dynamic flyover journey from their departure city to their destination, including key highlights such as their hotel, landmarks, planned activities, and transportation routes. This will enhance travel planning by making it visually engaging and personalized.
+**Celestia** is an immersive, Google Earth-powered virtual travel preview that lets users experience their trip in 3D before they go—and relive it afterward. Fly from your departure city to your destination, zoom into hotels and landmarks, explore planned activities, and trace transportation routes, all in a cinematic journey. Post-trip, Celestia transforms into a personal highlight reel, mapping your best photos, videos, and memories with music.
 
 ### Feature Description
-The virtual travel preview will:
-- **Fly into the destination city** from the user’s departure location with a cinematic 3D animation.
-- **Zoom into key locations** (e.g., hotel, landmarks) with smooth flyovers.
+**Celestia** will:
+- **Fly into the destination city** from your departure location with a stellar 3D animation.
+- **Zoom into key locations** (hotel, landmarks) with smooth, cosmic flyovers.
 - **Showcase planned activities** with virtual tours of attractions.
-- **Highlight transportation routes** (e.g., metro lines, taxi routes, car rental locations).
-- **Fly out of the city** to conclude the experience.
+- **Highlight transportation routes** (metro, taxis, rentals) in orbit-like paths.
+- **Fly out of the city** to conclude the pre-trip preview.
+- **Post-Trip Highlight Reel (Later Feature):** Overlay your best photos, videos, and trip highlights on the map, synced to uplifting music.
+
+### Tagline
+"Your Travel Universe Awaits"
 
 ### Target Use Case
-- Travel planning apps or websites looking to differentiate with an immersive preview.
-- Users who want a visual, interactive way to explore their itinerary before booking or traveling.
+- Travel apps/websites aiming to make planning and reminiscing immersive and unforgettable.
+- Users who crave a visual, starlit journey through their itinerary—before and after travel.
 
 ---
 
 ## Functional Requirements
 
 ### 1. Fly-In Animation
-- **Input:** User’s departure city (e.g., "New York") and destination city (e.g., "Paris").
-- **Output:** A 3D flyover animation starting from a high-altitude view of the departure city, traveling across the globe, and descending into the destination city.
-- **Details:** Smooth transitions with realistic curvature of the Earth, using satellite imagery and 3D terrain data.
+- **Input:** Departure city (e.g., "Tokyo") and destination (e.g., "Rome").
+- **Output:** A 3D flyover animation in the **Celestia Viewer**, starting above the departure city, soaring across the globe, and descending into the destination.
+- **Details:** Smooth, orbital transitions with Earth’s curvature and 3D terrain.
 
 ### 2. Zoom into Hotel & Landmarks
-- **Input:** Hotel address and a list of landmarks (e.g., Eiffel Tower, Louvre).
-- **Output:** A 3D flyover zooming into the hotel location and then panning to each landmark with labeled overlays.
-- **Details:** Include a subtle hover effect or tooltip with the name and a brief description of each location.
+- **Input:** Hotel address and landmarks (e.g., Colosseum, Trevi Fountain).
+- **Output:** Flyovers in the **Celestia Viewer** zooming into the hotel and panning to landmarks with glowing labels.
+- **Details:** Subtle hover effects or cosmic-style tooltips with names and descriptions.
 
 ### 3. Virtual Tours of Activities
-- **Input:** List of planned activities (e.g., "Louvre Museum Tour," "Seine River Cruise") with associated locations.
-- **Output:** Short virtual tour clips or 3D flyovers of each activity location, potentially with pre-rendered animations or interactive 360° views.
+- **Input:** Planned activities (e.g., "Vatican Tour," "Pizza Class") with locations.
+- **Output:** Short 3D flyovers or 360° previews of activity spots.
 - **Details:** Overlay activity names and times from the itinerary.
 
 ### 4. Transportation Routes
-- **Input:** Transportation options (e.g., metro stations, taxi stands, rental car locations) and routes between itinerary points.
-- **Output:** Animated lines or paths overlaid on the 3D map showing how to get from the hotel to landmarks/activities.
-- **Details:** Color-code routes by mode (e.g., blue for metro, yellow for taxis) and include estimated travel times.
+- **Input:** Transport options (e.g., metro, taxis, rentals) and routes.
+- **Output:** Animated, orbit-like paths on the map showing connections between itinerary points.
+- **Details:** Color-coded lines (e.g., blue for metro) with travel time estimates.
 
 ### 5. Fly-Out Animation
 - **Input:** Destination city.
-- **Output:** A cinematic fly-out from the destination city, ascending to a high-altitude view and fading to a "Trip Complete" screen.
-- **Details:** Mirror the fly-in animation for symmetry and closure.
+- **Output:** A cinematic ascent from the destination, fading to a "Prepare for Launch" screen.
+- **Details:** Mirrors the fly-in for a complete orbit-like experience.
 
 ### 6. Personalization
-- **Input:** User preferences (e.g., preferred landmarks, travel pace, transportation mode).
-- **Output:** Adjusted flyover routes, highlighted locations, and activity suggestions based on preferences.
-- **Details:** Allow users to tweak the preview via a settings panel (e.g., "Skip fly-in," "Focus on culture").
+- **Input:** User preferences (e.g., landmarks, transport mode).
+- **Output:** Tailored flyover routes and highlighted locations.
+- **Details:** Settings panel in the **Celestia Viewer** (e.g., "Skip fly-in," "Focus on food").
+
+### 7. Post-Trip Highlight Reel (Later Feature)
+- **Input:** User-uploaded photos/videos, trip highlights (e.g., timestamps, locations), and an optional music track.
+- **Output:** A dynamic replay in the **Celestia Viewer** where the map revisits key locations, overlaying user media at corresponding spots (e.g., photo of the Eiffel Tower pinned there), synced to music.
+- **Details:**
+  - Smooth transitions between media with fade-ins and zooms.
+  - Default royalty-free music (e.g., upbeat piano or ambient travel vibes), with an option to upload custom tracks.
+  - Exportable as a video file or shareable link.
 
 ---
 
 ## Technical Requirements
 
 ### 1. Mapping & Animation Engine
-- **Option A: Google Earth Studio**
-  - Use Google Earth Studio for pre-rendered cinematic animations.
-  - Export animations as video files and stitch them dynamically based on user inputs.
-  - Pros: High-quality visuals, easy to use.
-  - Cons: Less interactive, requires video processing.
-- **Option B: CesiumJS**
-  - Use CesiumJS for real-time, interactive 3D globe rendering.
-  - Build custom flyover paths and overlays programmatically.
-  - Pros: Fully interactive, customizable.
-  - Cons: Steeper learning curve, heavier client-side processing.
-- **Recommendation:** Start with CesiumJS for flexibility and interactivity, falling back to Google Earth Studio if performance becomes an issue.
+- **CesiumJS (Primary):** Real-time 3D globe rendering for the **Celestia Viewer**.
+- **Google Earth Studio (Fallback):** Pre-rendered animations if interactivity isn’t needed.
+- **Recommendation:** CesiumJS for flexibility and the post-trip reel’s dynamic overlays.
 
 ### 2. APIs & Data Sources
-- **Google Earth API (or CesiumJS equivalent):** For 3D globe rendering and terrain data.
-- **Geocoding API (e.g., Google Maps):** Convert user inputs (e.g., "Paris") into coordinates.
-- **Itinerary Data:** Sync with an external itinerary source (e.g., JSON file or API) containing flight details, hotel address, and activity list.
-- **Transportation API (e.g., Google Directions API):** Fetch routes and travel times between locations.
+- **Google Earth API/CesiumJS:** 3D rendering and terrain data.
+- **Geocoding API:** Convert addresses to coordinates.
+- **Itinerary Data:** JSON or API with flight, hotel, and activity details.
+- **Transportation API:** Routes and times (e.g., Google Directions).
+- **Media Handling:** Client-side upload for photos/videos in the highlight reel.
 
 ### 3. UI/UX
-- **Platform:** Embeddable in a web app (React/Vue) or mobile app (React Native/Flutter).
+- **Platform:** Web app (React/Vue) or mobile (React Native/Flutter).
 - **Controls:**
-  - Play/Pause button for the animation.
-  - Skip-to-section options (e.g., "Jump to Hotel").
+  - Play/Pause for animations and highlight reel.
+  - Skip-to-section (e.g., "Jump to Landmarks").
   - Fullscreen toggle.
-- **Styling:** Clean, modern overlay with minimalistic labels and tooltips.
+  - Post-trip: Upload button and music selector.
+- **Styling:** Cosmic-inspired overlays (e.g., glowing labels, starry transitions).
 
 ### 4. Performance
-- Optimize for smooth rendering on mid-range devices (e.g., 60 FPS animations).
-- Cache map tiles and pre-rendered animations where possible.
-- Fallback to 2D maps or static images if 3D rendering fails.
+- Optimize for 60 FPS on mid-range devices.
+- Cache map tiles and pre-rendered animations.
+- Compress user media for the highlight reel to ensure smooth playback.
 
 ---
 
 ## Implementation Steps
 
-### Phase 1: Setup & Core Mapping
-1. **Choose Mapping Tool:** Set up CesiumJS (or Google Earth Studio) in the project environment.
-2. **Basic Flyover:** Build a simple fly-in animation from one hardcoded city to another (e.g., New York to Paris).
-3. **UI Integration:** Embed the map viewer in a web/mobile app skeleton with basic controls (play/pause).
+### Phase 1: Setup & Core Celestia Viewer
+1. Integrate CesiumJS into the project.
+2. Build a basic fly-in from one city to another (e.g., Tokyo to Rome).
+3. Embed the **Celestia Viewer** in a UI with play/pause controls.
 
 ### Phase 2: Itinerary Integration
-1. **Input Parsing:** Create a function to parse itinerary data (e.g., JSON with departure, hotel, landmarks).
-2. **Dynamic Flyovers:** Adjust the flyover path and zoom-ins based on parsed coordinates.
-3. **Overlays:** Add labels and tooltips for hotels and landmarks.
+1. Parse itinerary data for dynamic flyovers.
+2. Add zoom-ins and overlays for hotels/landmarks.
+3. Smooth transitions between sections.
 
 ### Phase 3: Activities & Transportation
-1. **Activity Tours:** Integrate virtual tour snippets or 3D flyovers for each activity location.
-2. **Route Visualization:** Overlay transportation routes using API data (e.g., metro lines, taxi paths).
-3. **Polish:** Smooth transitions between sections with fade effects.
+1. Integrate activity flyovers and virtual tours.
+2. Overlay transportation routes with API data.
+3. Implement the fly-out animation.
 
 ### Phase 4: Personalization & Polish
-1. **User Preferences:** Add a settings panel for tweaking the preview (e.g., skip sections, preferred transport).
-2. **Fly-Out:** Implement the fly-out animation to mirror the fly-in.
-3. **Testing:** Ensure compatibility across devices (desktop, mobile) and optimize performance.
+1. Add a settings panel for user tweaks.
+2. Test across devices and optimize performance.
+3. Finalize pre-trip experience.
+
+### Phase 5: Post-Trip Highlight Reel (Later Feature)
+1. Build an upload system for photos/videos with location tagging.
+2. Overlay media on the map, syncing with a default or user-selected music track.
+3. Add export functionality (e.g., MP4 or shareable link).
 
 ---
 
 ## Deliverables
-- **Frontend Component:** A reusable map preview module (e.g., React component) that accepts itinerary data as props.
-- **Backend API (Optional):** A service to fetch and preprocess itinerary/transportation data if not provided by the client.
-- **Documentation:** Usage guide for integrating the feature into an existing app, including sample itinerary JSON format.
+- **Celestia Viewer:** A reusable component accepting itinerary and (later) media data.
+- **Backend API (Optional):** Preprocess itinerary or handle media uploads.
+- **Documentation:** Guide for integration, including sample JSON formats.
 
 ## Timeline (Estimated)
-- **Phase 1:** 1-2 weeks (setup and basic flyover).
-- **Phase 2:** 2-3 weeks (itinerary integration and overlays).
-- **Phase 3:** 2-3 weeks (activities and transportation).
-- **Phase 4:** 1-2 weeks (personalization and polish).
-- **Total:** 6-10 weeks, depending on team size and complexity.
+- **Phases 1-4 (Pre-Trip):** 6-10 weeks.
+- **Phase 5 (Post-Trip Reel):** 3-4 weeks additional.
+- **Total:** 9-14 weeks.
 
 ---
 
 ## Success Criteria
-- The preview runs smoothly on modern browsers/devices with no noticeable lag.
-- Users can input their itinerary and see a tailored, immersive flyover experience.
-- The feature feels intuitive and enhances the travel planning process.
+- Pre-trip: Smooth, immersive flyovers tailored to user itineraries.
+- Post-trip: A seamless highlight reel that maps memories with music.
+- Intuitive UI that feels cosmic and engaging.
 
 ## Potential Enhancements
-- **AR Integration:** Overlay the preview on a real-world view using mobile AR.
-- **Weather Effects:** Simulate destination weather (e.g., rain, sunshine) during the flyover.
-- **Social Sharing:** Export the preview as a shareable video or link.
+- **AR Mode:** Overlay Celestia’s preview/reel in real-world views.
+- **Weather Effects:** Simulate trip weather in the flyover.
+- **Celestia Stories:** Shareable mini-reels for social media.
+
+---
+
+### Branding Notes
+- **Logo Idea:** A globe with an orbiting path and a glowing star at the destination.
+- **Color Palette:** Deep blues, starry whites, and horizon golds.
+- **Tone:** Aspirational, wondrous, and user-centric—like exploring the universe of your trip.
+
+---
